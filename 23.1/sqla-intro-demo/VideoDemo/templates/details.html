@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{pet.name}}</title>
+</head>
+
+<body>
+  <h1>{{pet.name}}</h1>
+  <ul>
+    <li>ID: {{pet.id}}</li>
+    <li>Name: {{pet.name}}</li>
+    <li>Species: <a href="/species/{{pet.species}}">{{pet.species}}</a> </li>
+    <li>Hunger: {{pet.hunger}}</li>
+  </ul>
+  <blockquote>
+    {{pet.greet()}}
+  </blockquote>
+  <a href="/">Go Back</a>
+</body>
+
+</html>

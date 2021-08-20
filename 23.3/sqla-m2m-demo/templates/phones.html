@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+     <link rel="stylesheet"
+     href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+
+</head>
+<body>
+<div class="container">
+
+<h1>Phones</h1>
+<li><a href="/phones">Lazy Version</a></li>
+<li><a href="/phones-eager">Eager Version</a></li>
+
+
+<table class="table table-striped mt-5">
+  <thead>
+  <tr>
+    <th>Employee</th>
+    <th>Department Code</th>
+    <th>Phone</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for emp in emps %}
+  <tr>
+    <td>{{ emp.name }}</td>
+    <td>{{ emp.dept_code }}</td>
+    <td>
+      {% if emp.dept %}
+      {{ emp.dept.phone }}
+      {% else %}
+      -
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+  </div>
+
+</body>
+</html>
