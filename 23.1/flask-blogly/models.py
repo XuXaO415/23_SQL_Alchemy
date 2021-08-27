@@ -11,15 +11,22 @@ def connect_db(app):
     
 #Models
     
-    class User(db.Model):
+class User(db.Model):
+        """User."""
         __tablename__ = 'users'
-    
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+        
+        id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    first_name = db.column(db.Text, nullable=False)
+        first_name = db.column(db.Text(50), nullable=False)
     
-    last_name = db.column(db.Text, nullable=False)
+        last_name = db.column(db.Text(50), nullable=False)
     
-    image_url = db.column(db.text, nullable=False)
+        image_url = db.column(db.Text(50), nullable=True)
     
+    
+        def __repr__(self):
+            """Show info about user"""
+        
+            u = self
+            return f"<User {u.id} {u.first_name} {u.last_name} {u.image_url}>"
     
