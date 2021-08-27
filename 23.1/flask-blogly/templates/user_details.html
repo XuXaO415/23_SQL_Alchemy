@@ -9,13 +9,19 @@
 </head>
 
 <body>
+    <div class="row">
+        <img src="{user.image_url}" alt="" class="img-thumbnail">
+    </div>
+    <!-- <form>
+        <button type="button" class="btn btn-primary">Edit</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+    </form> -->
     <h1>{{user.name}} Details</h1>
     <ul>
         <li>First name: {{user.name}}</li>
         <li>Last name: {{user.last_name}}</li>
-
     </ul>
-
+    <a href="/ " class="btn btn-link ">Back to main page</a>
 </body>
 
 </html>
