@@ -30,7 +30,8 @@ class User(db.Model):
         """Show info about user"""
 
         u = self
-        return f"<User {u.id} {u.first_name} {u.last_name} {u.image_url}>"2021-08-26 21: 17: 13, 596 INFO sqlalchemy.engine.Engine
+        return f"<User {u.id} {u.first_name} {u.last_name} {u.image_url}>"
+    
 
 
 # 2021-08-26 21: 17: 13, 596 INFO sqlalchemy.engine.Engine
@@ -42,8 +43,8 @@ class User(db.Model):
 # 	PRIMARY KEY(id)
 # )
 
-You are now connected to database "blogly_db" as user "......".
-blogly_db =  # SELECT * FROM users;
-id | first_name | last_name | image_url
-----+------------+-----------+-----------
-(0 rows)
+# You are now connected to database "blogly_db" as user "......".
+# blogly_db =  # SELECT * FROM users;
+# id | first_name | last_name | image_url
+# ----+------------+-----------+-----------
+# (0 rows)
