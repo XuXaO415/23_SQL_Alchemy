@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+    {% block title %} {{user.full_name}} {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{user.name}}</title>
-</head>
-
-<body>
+    {% block content %}
     <div class="row">
-        <img src="{user.image_url}" alt="" class="img-thumbnail">
+        <div class="col-sm-2 col-6">
+            <img src="{{user.image_url}}" alt="{{user.full.name}}" class="img-thumbnail">
+        </div>
+        <form>
+            <button class="btn btn-primary" formaction="/users/{{user.id}}/edit" formmethod="GET">Edit</button>
+            <button class="btn btn-danger" formaction="/users/{{user.id}}/delete" formmethod="POST">Delete</button>
+        </form>
     </div>
-    <!-- <form>
-        <button type="button" class="btn btn-primary">Edit</button>
-        <button type="button" class="btn btn-danger">Delete</button>
-    </form> -->
-    <h1>{{user.name}} Details</h1>
-    <ul>
-        <li>First name: {{user.name}}</li>
-        <li>Last name: {{user.last_name}}</li>
-    </ul>
-    <a href="/ " class="btn btn-link ">Back to main page</a>
-</body>
 
-</html>
+    <a href="/" class="btn btn-link">Back to main page</a>
+    {% endblock %}

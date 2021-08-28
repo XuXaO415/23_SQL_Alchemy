@@ -24,7 +24,7 @@ class User(db.Model):
 
     last_name = db.Column(db.String(50), nullable=False)
 
-    image_url = db.Column(db.String(50), nullable=True)
+    image_url = db.Column(db.String(100), nullable=True)
 
     def __repr__(self):
         """Show info about user"""
