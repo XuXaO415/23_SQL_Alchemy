@@ -2,15 +2,14 @@
     {% block title %} {{user.full_name}} {% endblock %}
 
     {% block content %}
-    <div class="row">
-        <div class="col-sm-2 col-6">
-            <img src="{{user.image_url}}" alt="{{user.full.name}}" class="img-thumbnail">
-        </div>
-        <form>
-            <button class="btn btn-primary" formaction="/users/{{user.id}}/edit" formmethod="GET">Edit</button>
-            <button class="btn btn-danger" formaction="/users/{{user.id}}/delete" formmethod="POST">Delete</button>
-        </form>
+<div class="row">
+    <div class="col-sm-2 col-6">
+        <img src="{{user.image_url}}" alt="{{user.full_name}}" class="img-thumbnail">
     </div>
-
-    <a href="/" class="btn btn-link">Back to main page</a>
-    {% endblock %}
+    <form>
+        <button class="btn btn-primary" formaction="/users/{{user.id}}/edit" formmethod="GET">Edit</button>
+        <button class="btn btn-danger" formaction="/users/{{user.id}}/delete" formmethod="POST">Delete</button>
+    </form>
+</div>
+<a href="/" class="btn btn-link">Back to main page</a>
+{% endblock %}

@@ -20,17 +20,28 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    first_name = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.Text(), nullable=False)
 
-    last_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.Text(), nullable=False)
 
-    image_url = db.Column(db.String(100), nullable=True)
+    image_url = db.Column(db.Text(), nullable=True)
 
     def __repr__(self):
         """Show info about user"""
 
         u = self
         return f"<User {u.id} {u.first_name} {u.last_name} {u.image_url}>"
+    
+    # def full_name(self):
+    #     """Returns user's full name"""
+    #     return f"{self.first_name} {self.last_name}"
+    
+    # @property
+    # def full_name(self):
+    #     u = self
+    #     return f"{self.first_name} {self.last_name}"
+    
+    # https: // www.python-course.eu/python3_properties.php
     
 
 

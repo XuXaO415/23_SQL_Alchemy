@@ -1,7 +1,8 @@
 """Blogly application."""
 
-from flask_debugtoolbar import DebugToolbarExtension
+
 from flask import Flask, request, render_template, redirect, session
+from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
 
 # createdb blogly_db
@@ -24,27 +25,29 @@ def redirect_to_users():
     """Redirects to list of users"""
     return redirect('/users')
 
-@app.route('/users', methods=["GET"])
+@app.route('/users')
 def list_users():
     """List users"""
     users = User.query.all()
     return render_template('user_list.html', users=users)
 
-@app.route('/users/new', methods=["GET"])
+@app.route('/users/new')
 def show_user_form():
-    """Shows add form to users"""
+    """Shows form to users"""
     return render_template('new_user_form.html')
 
 @app.route('/users/new', methods=['POST'])
 def add_new_user():
     """Process add form and add user"""
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    image_url = request.form['image_url'] or None
+    new_user = User(
+    first_name = request.form['first_name'],
+    last_name = request.form['last_name'],
+    image_url = request.form['image_url'] or None 
+    )
     
-    user = User(first_name=first_name, last_name=last_name, image_url=image_url)
+    # user = User(first_name=first_name, last_name=last_name, image_url=image_url)
     
-    db.session.add(user)
+    db.session.add(new_user)
     db.session.commit()
     return redirect('/users')
     
@@ -68,12 +71,12 @@ def display_user_edit(user_id):
 @app.route('/users/<int:user_id>/edit', methods=['POST'])
 def post_user_edit(user_id):
     """Process the edit form, returning the user to the /users page."""
-    u = User.query.get_or_404(user_id)
-    u.first_name = request.form['first_name']
-    u.last_name = request.form['last_name']
-    u.image_url = request.form['image_url']
+    user = User.query.get_or_404(user_id)
+    user.first_name = request.form['first_name']
+    user.last_name = request.form['last_name']
+    user.image_url = request.form['image_url']
     
-    db.session.add(u)
+    db.session.add(user)
     db.session.commit()
     
     return redirect('/users')
@@ -88,7 +91,7 @@ def delete_user(user_id):
     db.session.commit()
     
     return redirect('/users')
-    
+    # return render_template('user_details.html')
 
 
 
