@@ -36,9 +36,10 @@ def show_user_form():
     """Shows form to users"""
     return render_template('new_user_form.html')
 
+# From solutions 
 @app.route('/users/new', methods=['POST'])
 def add_new_user():
-    """Process add form and add user"""
+    """Process form; add user"""
     new_user = User(
     first_name = request.form['first_name'],
     last_name = request.form['last_name'],
@@ -85,9 +86,9 @@ def post_user_edit(user_id):
 @app.route('/users/<int:user_id>/delete', methods=['POST'])
 def delete_user(user_id):
     """Delete the user."""
-    u = User.query.get_or_404(user_id)
+    user = User.query.get_or_404(user_id)
     
-    db.session.delete(u)
+    db.session.delete(user)
     db.session.commit()
     
     return redirect('/users')
