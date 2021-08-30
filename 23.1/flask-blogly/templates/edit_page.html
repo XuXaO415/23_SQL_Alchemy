@@ -2,11 +2,12 @@
 {% block title %} Edit a user {% endblock %}
 {% block content %}
 <h1>Edit a user</h1>
-<form action="/users/{{user.id}}/edit" method="POST">
+<form method="POST">
     <div class="form-group">
         <label for="first_name">First Name</label>
         <input
             type="input"
+            name="first_name"
             id="first_name"
             value="{{user.first_name}}"
             placeholder="Enter a first name"
@@ -16,6 +17,7 @@
         <label for="last_name">Last Name</label>
         <input
             type="input"
+            name="last_name"
             id="last_name"
             value="{{user.last_name}}"
             placeholder="Enter a last name"
@@ -25,14 +27,18 @@
         <label for="image_url">Image URL</label>
         <input
             type="input"
+            name="image_url"
             id="image_url"
             value="{{user.image_url}}"
             placeholder="Provide an image of this user"
         >
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-light">Cancel</button>
-        <a href="/users/{{user.id}}" class="btn btn-success">Save</a>
+        <button type="submit" class="btn btn-success" >Save</button>
+        <a href="/users/{{user.id}}" class="btn btn-light">Cancel</a>
     </div>
 </form>
 {% endblock %}
+
+
+<!-- action="/users/{{user.id}}/edit"  -->
