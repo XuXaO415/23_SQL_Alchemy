@@ -40,13 +40,13 @@ def show_user_form():
 @app.route('/users/new', methods=['POST'])
 def add_new_user():
     """Process form; add user"""
-    new_user = User(
+    # new_user = User(
     first_name = request.form['first_name'],
     last_name = request.form['last_name'],
     image_url = request.form['image_url'] or None 
-    )
+    # )
     
-    # user = User(first_name=first_name, last_name=last_name, image_url=image_url)
+    new_user = User(first_name=first_name, last_name=last_name, image_url=image_url)
     
     db.session.add(new_user)
     db.session.commit()
@@ -66,16 +66,19 @@ def show_user(user_id):
 def display_user_edit(user_id):
     """show edit page to user"""
     user = User.query.get_or_404(user_id)
+    # user = User.query.filter().all()
     return render_template('edit_page.html', user=user)
 
 
-@app.route('/users/<int:user_id>/edit', methods=['POST'])
+@app.route('/users/<int:user_id>/edit', methods=['GET', 'POST'])
 def post_user_edit(user_id):
     """Process the edit form, returning the user to the /users page."""
     user = User.query.get_or_404(user_id)
     user.first_name = request.form['first_name']
     user.last_name = request.form['last_name']
     user.image_url = request.form['image_url']
+    
+    # user = User(first_name=first_name, last_name=last_name, image_url=image_url)
     
     db.session.add(user)
     db.session.commit()
@@ -94,6 +97,8 @@ def delete_user(user_id):
     return redirect('/users')
     # return render_template('user_details.html')
 
+# if __name__ == '__main__':
+#     app.run()
 
 
 
