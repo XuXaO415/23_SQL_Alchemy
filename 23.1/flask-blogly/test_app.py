@@ -33,22 +33,20 @@ class FlaskTests(TestCase):
         
     def test_list_users(self):
         with app.test_client() as client:
-            # can now make request to flask via client
+            """can make request to flask via client"""
             resp = client.get("/users")
             html = resp.get_data(as_text=True)
             self.assertEqual(resp.status_code, 200)
-            # self.assertEqual.status_code == 200
             self.assertIn("/users", html)
             
             
-    # def test_show_user(self):
-    #     with app.test_client() as client:
-    #         resp = client.get("/users/{self.user_id}", follow_redirects=True)
-    #         html = resp.get_data(as_text=True)
-    #         self.assertEqual(resp.status_code, 404)
-    #         self.assertEqual("<h1>New User Form</h1>")
-            
-            
+    def test_show_user(self):
+        with app.test_client() as client:
+            resp = client.post("/users/{self.user_id}")
+            html = resp.get_data(as_text=True)
+            self.assertEqual(resp.status_code, 404)
+            self.assertNotEqual("<h1>Jerry Xiao</h1>", html)
+  
             
     
 # https://www.superherodb.com/pictures2/portraits/10/050/11217.jpg?v
