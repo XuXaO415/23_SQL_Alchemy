@@ -72,6 +72,7 @@ class Post(db.Model):
 
     
     def __repr__(self):
+        """Show info about post"""
         
         p = self
         return f"<Post {p.id} {p.title} {p.content} {p.created_at}>"
