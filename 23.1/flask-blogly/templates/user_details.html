@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-    {% block title %} {{user.first_name}} {{user.last_name}} {% endblock %}
+{% block title %} {{user.first_name}}{% endblock%}
+
 
     {% block content %}
 <div class="row">
@@ -16,6 +17,17 @@
             <button class="btn btn-primary" formaction="/users/{{user.id}}/edit" formmethod="GET">Edit</button>
             <button class="btn btn-danger" formaction="/users/{{user.id}}/delete" formmethod="POST">Delete</button>
         </form>
+        <h2>Posts</h2>
+        <ul>
+            {% for post in posts %}
+            <li>
+                <a href="/posts/{{post.id}}">{{post.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <p>
+            <a href="/users/{{user.id}}/posts/new" class="btn btn-primary">Add Post</a>
+        </p>
     </div>
     <a href="/" class="btn btn-link">Back to main page</a>
     {% endblock %}

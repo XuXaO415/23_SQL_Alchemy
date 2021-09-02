@@ -6,7 +6,6 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 # import pdb
 
-# createdb blogly_db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_db'
@@ -93,7 +92,8 @@ def delete_user(user_id):
     user = User.query.get_or_404(user_id)
     
     db.session.delete(user)
-    db.session.commit()
+    db.session.commit()    
+
     
     return redirect('/users')
 
@@ -126,29 +126,35 @@ def add_post(user_id):
     
 @app.route('/posts/<int:post_id>')
 def show_post(post_id):
-    """Shows post"""
+    """Shows post detail page"""
     post = Post.query.get_or_404(post_id)
-    user = User.query.get_or_404(user_id)
-    return render_template('' post=post, user=user)
+  
+    return render_template('', post=post)
     
     
 
     
-@app.route('/posts/<int:post_id>/edit')
-def show_form(post_id):
-    """Show form to edit a post, and to cancel (back to user page)"""
-    post = Post.query.get_or_404(post_id)
-    return render_template(post=post)
+# @app.route('/posts/<int:post_id>/edit')
+# def show_form(post_id):
+#     """Show form to edit a post, and to cancel (back to user page)"""
+#     post = Post.query.get_or_404(post_id)
+#     return render_template(post=post)
 
 
-@app.route('/posts/<int:post_id>/edit', methods=['POST'])
-def handle_post(post_id):
-    """Handle editing of a post. Redirect back to the post view"""
-    post = Post.query.get_or_404(post_id)
+# @app.route('/posts/<int:post_id>/edit', methods=['POST'])
+# def handle_post(post_id):
+#     """Handle editing of a post. Redirect back to the post view"""
+#     post = Post.query.get_or_404(post_id)
+#     post.title = request.form['title']
+#     post.content = request.form['content']
+#     db.session.add(post)
+#     db.session.commit()
+    
+#     return redirect('/users/{post')
 
-@app.route('/posts/<int:post_id>/delete', methods=['POST'])
-def delete_post():
-    """Delete post"""
+# @app.route('/posts/<int:post_id>/delete', methods=['POST'])
+# def delete_post():
+#     """Delete post"""
 
 
 

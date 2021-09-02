@@ -38,15 +38,12 @@ class User(db.Model):
     #     u = self
     #     return f'<User {u.id} {u.first_name} {u.last_name}>'
     
+    @property
     def full_name(self):
         """Returns user's full name"""
         u = self
         return f'<User {u.first_name} {u.last_name}>'
     
-    # @property
-    # def full_name(self):
-    #     u = self
-    #     return f"{self.first_name} {self.last_name}"
     
     # https: // www.python-course.eu/python3_properties.php
     
@@ -69,6 +66,8 @@ class Post(db.Model):
     
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"),
                         nullable=False)
+    
+    # user = db.relationship('Users')
 
     
     def __repr__(self):
