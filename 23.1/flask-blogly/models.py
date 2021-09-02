@@ -3,6 +3,7 @@
 # createdb blogly_db
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -28,17 +29,19 @@ class User(db.Model):
     last_name = db.Column(db.String(30), nullable=False)
 
     image_url = db.Column(db.String(), nullable=False, default=Default_Image_URL)
-
-    def __repr__(self):
-        """Show info about user"""
-
-        u = self
-        return f'<User {u.id} {u.first_name} {u.last_name}>'
     
-    # def full_name(self):
-    #     """Returns user's full name"""
+    posts = db.relationship("Post", backref="users", cascade="all, delete-orphan")
+
+    # def __repr__(self):
+    #     """Show info about user"""
+
     #     u = self
-    #     return f'<User {u.first_name} + ' ' + {u.last_name}>'
+    #     return f'<User {u.id} {u.first_name} {u.last_name}>'
+    
+    def full_name(self):
+        """Returns user's full name"""
+        u = self
+        return f'<User {u.first_name} {u.last_name}>'
     
     # @property
     # def full_name(self):
@@ -48,18 +51,31 @@ class User(db.Model):
     # https: // www.python-course.eu/python3_properties.php
     
 
+################################################################
+# Post table
+# https: // flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+class Post(db.Model):
+    #Post
+    __tablename__ = "posts"
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    
+    title = db.Column(db.String(), nullable=False)
+    
+    content = db.Column(db.String(), nullable=False)
+    
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow())
+    
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"),
+                        nullable=False)
 
-# 2021-08-26 21: 17: 13, 596 INFO sqlalchemy.engine.Engine
-# CREATE TABLE users(
-# 	id SERIAL NOT NULL,
-# 	first_name VARCHAR(50) NOT NULL,
-# 	last_name VARCHAR(50) NOT NULL,
-# 	image_url VARCHAR(50),
-# 	PRIMARY KEY(id)
-# )
-
-# You are now connected to database "blogly_db" as user "......".
-# blogly_db =  # SELECT * FROM users;
-# id | first_name | last_name | image_url
-# ----+------------+-----------+-----------
-# (0 rows)
+    
+    def __repr__(self):
+        
+        p = self
+        return f"<Post {p.id} {p.title} {p.content} {p.created_at}>"
+    
+  
+    
+    

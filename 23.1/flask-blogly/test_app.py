@@ -27,9 +27,9 @@ class FlaskTests(TestCase):
     # def test_redirect(self):
     #     with app.test_client() as client:
     #         resp = client.get("/users")
-    #         html = resp.get_data(as_text=True)
+    #         # html = resp.get_data(as_text=True)
     #         self.assetEqual(resp.status_code, 302)
-    #         self.assertIn()
+    #         self.assertIn(resp.location, "http://localhost/")
         
     def test_list_users(self):
         with app.test_client() as client:
@@ -46,6 +46,7 @@ class FlaskTests(TestCase):
             html = resp.get_data(as_text=True)
             self.assertEqual(resp.status_code, 404)
             self.assertNotEqual("<h1>Jerry Xiao</h1>", html)
+            #assertNotEqual checks if a!=b
   
             
     
