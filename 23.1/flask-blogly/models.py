@@ -30,7 +30,7 @@ class User(db.Model):
 
     image_url = db.Column(db.String(), nullable=False, default=Default_Image_URL)
     
-    posts = db.relationship("Post", backref="users", cascade="all, delete-orphan")
+    posts = db.relationship("Post", backref="user", cascade="all, delete")
 
     # def __repr__(self):
     #     """Show info about user"""
@@ -38,11 +38,11 @@ class User(db.Model):
     #     u = self
     #     return f'<User {u.id} {u.first_name} {u.last_name}>'
     
-    @property
-    def full_name(self):
-        """Returns user's full name"""
-        u = self
-        return f'<User {u.first_name} {u.last_name}>'
+    # @property
+    # def full_name(self):
+    #     """Returns user's full name"""
+    #     user = self
+    #     return f"<User {user.first_name} {user.last_name}>"
     
     
     # https: // www.python-course.eu/python3_properties.php
@@ -57,12 +57,13 @@ class Post(db.Model):
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     
-    title = db.Column(db.String(), nullable=False)
+    title = db.Column(db.Text(), nullable=False)
     
-    content = db.Column(db.String(), nullable=False)
+    content = db.Column(db.Text(), nullable=False)
     
     created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.utcnow())
+                           default=datetime.now())
+    # datetime.utcnow())
     
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"),
                         nullable=False)
@@ -73,9 +74,19 @@ class Post(db.Model):
     def __repr__(self):
         """Show info about post"""
         
-        p = self
-        return f"<Post {p.id} {p.title} {p.content} {p.created_at}>"
+        # p = self
+        return f"<Post {self.id} {self.title} {self.content} {self.created_at}>"
     
-  
+
+    # def format_date(self):
+    #     return f"<Create by {self.first_name} {self.last_name} at {self.created_at}>"
     
+    #From solutions
+    @property
+    def format_date(self):
+        """Return nicely-formatted date."""
+
+        return self.created_at.strftime("%B %d, %Y at %-I:%M %p")
+
+    #    https://www.codegrepper.com/code-examples/python/datetime+utcnow+python 
     

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Details{{ post.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p>
+    <i>Posted by<b> {{post.user.first_name}} {{post.user.last_name}}</b>
+        <small> on {{post.format_date}} </small> </i>
+    <!-- <small>{{post.create_at}}</small> -->
+</p>
+<form>
+    <button class="btn btn-outline-primary" formmethod="GET" formaction="/users/{{ post.user_id }}">Cancel</button>
+    <button class="btn btn-primary" formmethod="GET" formaction="/posts/{{ post.id }}/edit">Edit</button>
+    <button class="btn btn-danger" formaction="/posts/{{ post.id }}/delete">Delete</button>
+        <!-- <button class="btn btn-danger" formmethod="POST" formaction="/posts/{{ post.id }}/delete">Delete</button> -->
+</form>
+{% endblock %}
