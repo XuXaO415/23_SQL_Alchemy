@@ -11,16 +11,12 @@ def connect_db(app):
 class Pet(db.Model):
     __tablename__ = 'pets'
 
-    id = db.Column(db.Integer,
-                   primary_key=True,
-                   autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    name = db.Column(db.String(50),
-                     nullable=False,
-                     unique=True)
+    name = db.Column(db.String(50), nullable=False, unique=True)
 
     species = db.Column(db.String(30), nullable=True)
-
+    
     hunger = db.Column(db.Integer, nullable=False, default=20)
 
     @classmethod
@@ -43,6 +39,15 @@ class Pet(db.Model):
         self.hunger -= amt
         self.hunger = max(self.hunger, 0)
 
-                     
+
+
+# CREATE TABLE pets (
+# 	id SERIAL NOT NULL, 
+# 	name VARCHAR(50) NOT NULL, 
+# 	species VARCHAR(30), 
+# 	hunger INTEGER NOT NULL, 
+# 	PRIMARY KEY (id), 
+# 	UNIQUE (name)
+# );
 
 

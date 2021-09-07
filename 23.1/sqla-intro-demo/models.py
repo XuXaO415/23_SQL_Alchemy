@@ -1,4 +1,5 @@
 """Demo file showing off a model for SQLAlchemy."""
+# from flask import Flask, request, redirect, render_template, flash, session
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -6,8 +7,7 @@ db = SQLAlchemy()
 
 
 def connect_db(app):
-    """Connect to database."""
-
+    """Connect to database"""
     db.app = app
     db.init_app(app)
 
@@ -48,3 +48,5 @@ class Pet(db.Model):
         """Get all pets matching that species."""
 
         return cls.query.filter_by(species=species).all()
+    
+    # Pet.query.filter_by(species='dog').all()
