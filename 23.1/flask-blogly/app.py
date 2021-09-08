@@ -4,7 +4,7 @@
 from flask import Flask, request, render_template, redirect, session, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
-# import pdb
+import pdb
 
 
 app = Flask(__name__)
@@ -24,6 +24,10 @@ db.create_all()
 def redirect_to_users():
     """Redirects to list of users"""
     return redirect('/users')
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404_page.html'), 404
 
 @app.route('/users')
 def list_users():
@@ -119,7 +123,7 @@ def add_post(user_id):
     new_post = Post(title=title, content=content, user=user)
     db.session.add(new_post)
     db.session.commit()
-    return redirect('/users/{user_id}')
+    return redirect(f'/users/{user_id}')
 
     # return render_template('edit_post.html', user=user)
     
@@ -146,46 +150,50 @@ def handle_post(post_id):
     post.content = request.form['content']
     db.session.add(post)
     db.session.commit()
-    
-    return redirect('/users/{post.user_id}')
+    # pdb.set_trace()
+    # return redirect('/users/' + str(post.user_id))
+    return redirect(f'/users/{post.user_id}')
 
 @app.route('/posts/<int:post_id>/delete', methods=['POST'])
 def delete_post(post_id):
     """Delete post"""
     post = Post.query.get_or_404(post_id)
-    db.session.add(post)
+    db.session.delete(post)
     db.session.commit()
-    return redirect('/users/{post.user_id}')
+    return redirect(f'/users/{post.user_id}')
+
+
+
 
 
 #######################################################
 #Adding tags
-@app.route('/tags')
-def list_tags():
-    """List all tags with links to the tag detail page"""
+# @app.route('/tags')
+# def list_tags():
+#     """List all tags with links to the tag detail page"""
 
-@app.route('/tags/<tag_id>')
-def edit_tag(tag_id):
-    """Shows detail about a tag"""
+# @app.route('/tags/<tag_id>')
+# def edit_tag(tag_id):
+#     """Shows detail about a tag"""
     
-@app.route('/tags/new')
-def add_new_tag():
-    """Shows form to add a new tag"""
+# @app.route('/tags/new')
+# def add_new_tag():
+#     """Shows form to add a new tag"""
     
-@app.route('/tags/new', methods=['POST'])
-def add_new_tag():
-    """Process add form, adds tag, and redirect to tag list"""
+# @app.route('/tags/new', methods=['POST'])
+# def add_new_tag():
+#     """Process add form, adds tag, and redirect to tag list"""
     
-@app.route('/tags/<tag_id>/edit', methods=['GET'])
-def edit_tag():
-    """"Show edit form for a tag"""
+# @app.route('/tags/<tag_id>/edit', methods=['GET'])
+# def edit_tag():
+#     """"Show edit form for a tag"""
 
-@app.route('/tags/<tag_id>/edit', methods=['POST'])
-def edit_tag():
-    """"Process edit form, edit tag, and redirects to the tags list"""
+# @app.route('/tags/<tag_id>/edit', methods=['POST'])
+# def edit_tag():
+#     """"Process edit form, edit tag, and redirects to the tags list"""
     
-@app.route('/tags/<tag_id>/delete', methods=['POST'])
-def delete_tag(tag_id):
-    """Delete a tag"""
+# @app.route('/tags/<tag_id>/delete', methods=['POST'])
+# def delete_tag(tag_id):
+#     """Delete a tag"""
     
 
