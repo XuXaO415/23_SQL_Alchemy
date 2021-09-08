@@ -1,3 +1,4 @@
+<!-- From solutions -->
 {% extends 'base.html' %}
 
 {% block title %}Post Details{{ post.title }}{% endblock %}
@@ -8,7 +9,6 @@
 <p>
     <i>Posted by<b> {{post.user.first_name}} {{post.user.last_name}}</b>
         <small> on {{post.format_date}} </small> </i>
-    <!-- <small>{{post.create_at}}</small> -->
 </p>
 <form>
     <button class="btn btn-outline-primary" formmethod="GET" formaction="/users/{{ post.user_id }}">Cancel</button>

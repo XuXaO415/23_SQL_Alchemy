@@ -90,3 +90,15 @@ class Post(db.Model):
 
     #    https://www.codegrepper.com/code-examples/python/datetime+utcnow+python 
     
+    
+    
+#############################################################################
+#Part 3: M2M relationships
+
+
+class Tag(db.Model):
+    __tablename__ = "tags"
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text(), nullable=False)
+    
