@@ -120,7 +120,8 @@ def add_post(user_id):
     db.session.add(new_post)
     db.session.commit()
     return redirect('/users/{user_id}')
-    # return render_template('show_post.html', user=user)
+
+    # return render_template('edit_post.html', user=user)
     
     
 @app.route('/posts/<int:post_id>')
@@ -157,6 +158,34 @@ def delete_post(post_id):
     return redirect('/users/{post.user_id}')
 
 
+#######################################################
+#Adding tags
+@app.route('/tags')
+def list_tags():
+    """List all tags with links to the tag detail page"""
 
+@app.route('/tags/<tag_id>')
+def edit_tag(tag_id):
+    """Shows detail about a tag"""
+    
+@app.route('/tags/new')
+def add_new_tag():
+    """Shows form to add a new tag"""
+    
+@app.route('/tags/new', methods=['POST'])
+def add_new_tag():
+    """Process add form, adds tag, and redirect to tag list"""
+    
+@app.route('/tags/<tag_id>/edit', methods=['GET'])
+def edit_tag():
+    """"Show edit form for a tag"""
 
+@app.route('/tags/<tag_id>/edit', methods=['POST'])
+def edit_tag():
+    """"Process edit form, edit tag, and redirects to the tags list"""
+    
+@app.route('/tags/<tag_id>/delete', methods=['POST'])
+def delete_tag(tag_id):
+    """Delete a tag"""
+    
 

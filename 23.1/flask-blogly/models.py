@@ -63,7 +63,7 @@ class Post(db.Model):
     
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.now())
-    # datetime.utcnow())
+    
     
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"),
                         nullable=False)
@@ -97,8 +97,13 @@ class Post(db.Model):
 
 
 class Tag(db.Model):
+    """Tag table"""
     __tablename__ = "tags"
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.Text(), nullable=False)
+    name = db.Column(db.Text(), nullable=False, unique=True)
+    posts = db.relationship("Post", backref="tags", cascade="all, delete")
     
+    def __repr__(self):
+        """Show info about post"""
+        return f"<Tag {self.id} {self.name}"
