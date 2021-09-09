@@ -190,7 +190,7 @@ def edit_tag(tag_id):
 def add_new_tag():
     """Shows form to add a new tag"""
     post = Post.query.all()
-    return render_template('add_new_tag.html', post=post)
+    return render_template('add_new_tag.html', )
     
     
 # @app.route('/tags/new', methods=['POST'])

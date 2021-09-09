@@ -1,8 +1,8 @@
 {% extends 'base.html' %} 
-{% Block title %}Tags{% endblock %}
-{% Block content %} 
+{% block title %}Tags{% endblock %}
+{% block content %} 
 <h1>Tags</h1>
-{% if tags %}
+
 <ul>
     {% for tag in tags %}
     <li>
@@ -10,8 +10,8 @@
     </li>
     {% endfor %}
 </ul>
-{% endfor %}
 <p>
     <a class="btn btn-sm btn-secondary" href="/tags/new">Add Tag</a>
 </p>
 {%endblock%}
+
