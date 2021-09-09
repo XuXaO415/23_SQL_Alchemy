@@ -102,8 +102,21 @@ class Tag(db.Model):
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.Text(), nullable=False, unique=True)
-    posts = db.relationship("Post", backref="tags", cascade="all, delete")
+    #Through relationships
+    # posts = db.relationship("Post", backref="tags", cascade="all, delete")
+    posts = db.relationship("Post", secondary="posts_tags", backref="tags")
     
     def __repr__(self):
-        """Show info about post"""
+        """Show info about tags"""
         return f"<Tag {self.id} {self.name}"
+    
+    class PostTag(db.Model):
+        """Mapping post tags"""
+        __tablename__= "posts_tags"
+        post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), primary_key=True)
+        tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), primary_key=True)
+        
+        def __repr__(self):
+            """Show info about post tags"""
+            return f"<PostTag{self.post_id} {self.tag_id}"
+        
