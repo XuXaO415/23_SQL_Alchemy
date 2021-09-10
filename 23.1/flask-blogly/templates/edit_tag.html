@@ -8,6 +8,26 @@
     <label for="name" class="col-sm-2 col-form-label">Name</label>
       <input class="form-control" id="name" name="name" value="{{ tag.name }}">
     </div>
+    
+    <div class="form-group row form-check">
+    {% for post in posts %}
+    <div>
+      <input
+              class="form-input"
+              type="checkbox"
+              value="{{ post.id }}"
+              id="post_{{ post.id }}"
+              name="posts"
+              {% if post in tag.posts %}
+              checked
+              {% endif %}
+      >
+      <label class="form-check-label" for="post_{{ post.id }}">
+        {{ post.title }}
+      </label>
+    </div>
+    {% endfor %}
+  </div>
 
       <a href="/tags/{{tag.id}}" class="btn btn-outline-info">
         Cancel

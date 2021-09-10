@@ -6,12 +6,17 @@
 <ul>
     {% for tag in tags %}
     <li>
-        <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+        <a href="/tags/{{ tag.id }}">{{ tag.name }}</a>
     </li>
     {% endfor %}
 </ul>
 <p>
+
     <a class="btn btn-sm btn-secondary" href="/tags/new">Add Tag</a>
+    </p>
+    <p>
+        <a href="/" class="btn btn-link">Back to main page</a>
 </p>
+
 {%endblock%}
 

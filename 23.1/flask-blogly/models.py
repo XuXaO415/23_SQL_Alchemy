@@ -100,15 +100,16 @@ class Tag(db.Model):
     """Tag table"""
     __tablename__ = "tags"
     
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.Text(), nullable=False, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
     #Through relationships
     # posts = db.relationship("Post", backref="tags", cascade="all, delete")
     posts = db.relationship("Post", secondary="posts_tags", backref="tags")
     
     def __repr__(self):
         """Show info about tags"""
-        return f"<Tag {self.id} {self.name}"
+        tag=self
+        return f"<Tag {tag.id} {tag.name}>"
     
     class PostTag(db.Model):
         """Mapping post tags"""
@@ -118,5 +119,5 @@ class Tag(db.Model):
         
         def __repr__(self):
             """Show info about post tags"""
-            return f"<PostTag{self.post_id} {self.tag_id}"
+            return f"<PostTag {self.post_id} {self.tag_id}>"
         

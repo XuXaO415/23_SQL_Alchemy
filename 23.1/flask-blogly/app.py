@@ -173,6 +173,7 @@ def delete_post(post_id):
 def list_tags():
     """List all tags with links to the tag detail page"""
     tags = Tag.query.all()
+   
     return render_template('list_tags.html', tags=tags)
 
 
@@ -190,12 +191,13 @@ def post_new_tag():
     #.getlist sends 'key' multiple times and returns a list of values. get only returns the first value
 
     name = request.form.getlist('name')
+    # name = request.form('name')
     tag = Tag(name=name)
 
     db.session.add(tag)
     db.session.commit()
-
-    return redirect('/tags')
+    # pdb.set_trace() 
+    return render_template('list_tags.html', tag=tag)
 
 
 @app.route('/tags/<int:tag_id>/edit')
@@ -215,7 +217,7 @@ def post_edit_tag(tag_id):
     db.session.add(tag)
     db.session.commit()
     
-    return redirect('/tags')
+    return redirect(f'/tags')
 
     
 
