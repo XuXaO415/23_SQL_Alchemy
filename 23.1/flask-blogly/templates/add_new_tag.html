@@ -2,17 +2,20 @@
 {% block title %}Add Tag{% endblock %}
 {%block content %}
 <h1>Create a tag</h1>
+
 <form action="/tags/new" method="POST">
+
     <div class="form-group">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <input
-            type="input"
+            type="text"
             class="form-control"
             name="name"
             id="name"
             placeholder="Enter a name for a tag"
         >
     </div>
+    <!-- From solutions -->
     <div class="form-check form-group row">
         {% for post in posts %}
         <div>

@@ -175,35 +175,78 @@ def list_tags():
     tags = Tag.query.all()
     return render_template('list_tags.html', tags=tags)
 
-@app.route('/tags/<tag_id>/edit')
+
+@app.route('/tags/new')
+def add_new_tag():
+    """Shows form to add a new tag"""
+    post = Post.query.all()
+    return render_template('add_new_tag.html', post=post)
+
+
+@app.route('/tags/new', methods=['POST'])
+def post_new_tag():
+    """Process add form, adds tag, and redirect to tag list"""
+    # request.form.getlist('key')
+    #.getlist sends 'key' multiple times and returns a list of values. get only returns the first value
+
+    name = request.form.getlist('name')
+    tag = Tag(name=name)
+
+    db.session.add(tag)
+    db.session.commit()
+
+    return redirect('/tags')
+
+
+@app.route('/tags/<int:tag_id>/edit')
 def edit_tag(tag_id):
     """"Show edit form for a tag"""
-
     tag = Tag.query.get_or_404(tag_id)
-    return render_template('edit_tag.html', tag=tag)
+    post = Post.query.all()
+    return render_template('edit_tag.html', tag=tag, post=post)
+
+
+@app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+def post_edit_tag(tag_id):
+    """"Process edit form, edit tag, and redirects to the tags list"""
+    tag = Tag.query.get_or_404(tag_id)
+    tag.name = request.form.getlist('name')
+    
+    db.session.add(tag)
+    db.session.commit()
+    
+    return redirect('/tags')
+
+    
+
+
+
+
+# @app.route('/tags/<int:tag_id>/delete', methods=['POST'])
+# def delete_tag(tag_id):
+#     """Delete a tag"""
+    
 
 # @app.route()
 # def tag_detail():
 #     """Shows page detailing a specific tag"""
     
-@app.route('/tags/new')
-def add_new_tag():
-    """Shows form to add a new tag"""
-    post = Post.query.all()
-    return render_template('add_new_tag.html', )
-    
-    
-# @app.route('/tags/new', methods=['POST'])
-# def add_new_tag():
-#     """Process add form, adds tag, and redirect to tag list"""
-       
 
-# @app.route('/tags/<tag_id>/edit', methods=['POST'])
-# def edit_tag():
-#     """"Process edit form, edit tag, and redirects to the tags list"""
     
-# @app.route('/tags/<tag_id>/delete', methods=['POST'])
-# def delete_tag(tag_id):
-#     """Delete a tag"""
     
 
+
+
+
+
+
+
+# request.args: the key/value pairs in the URL query string
+# request.form: the key/value pairs in the body, from a HTML post form, or JavaScript request that isn't JSON encoded
+# request.files: the files in the body, which Flask keeps separate from form. HTML forms must use enctype =multipart/form-data or files will not be uploaded.
+# request.values: combined args and form, preferring args if keys overlap
+# All of these are MultiDict instances. You can access values using:
+
+# request.form['name']: use indexing if you know the key exists
+# request.form.get('name'): use get if the key might not exist
+# request.form.getlist('name'): use getlist if the key is sent multiple times and you want a list of values. get only returns the first value.
