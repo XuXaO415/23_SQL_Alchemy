@@ -9,17 +9,21 @@
 <p>
     <i>Posted by<b> {{post.user.first_name}} {{post.user.last_name}}</b>
         <small> on {{post.format_date}} </small> </i>
+       
 </p>
+<a href="/tags">Tags:</a>
 {% if post.tags %}
+{% for tag in post.tags %}
+ 
 <p>
-    <b>Tags:</b>
-    {% for tag in post.tags %}
-    <a href="/tags/{{tag.id}}">
-        <i class="badge badge-primary">{{tag.name}}
-        </i></a>
-        {% endfor %}
-</p>
-{% endif %}
+       <i class="badge badge-primary">{{tag.name}}
+     {% endfor %}
+        {% else %}
+            <a href="/tags/new" class="btn btn-outline-process">Create new tag</a>
+            {% endif %}
+       </i>
+
+       </p>
 <form>
     <button class="btn btn-outline-primary" formmethod="GET" formaction="/users/{{ post.user_id }}">Cancel</button>
     <button class="btn btn-primary" formmethod="GET" formaction="/posts/{{ post.id }}/edit">Edit</button>
