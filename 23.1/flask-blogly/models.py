@@ -108,8 +108,8 @@ class Tag(db.Model):
     
     def __repr__(self):
         """Show info about tags"""
-        tag=self
-        return f"<Tag {tag.id} {tag.name}>"
+        # tag=self
+        return f"<Tag {self.id} {self.name}>"
     
     class PostTag(db.Model):
         """Mapping post tags"""

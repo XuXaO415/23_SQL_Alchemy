@@ -1,8 +1,7 @@
 {% extends 'base.html' %} 
 {% block title %}Tags{% endblock %}
-{% block content %} 
+{% block content %}
 <h1>Tags</h1>
-
 <ul>
     {% for tag in tags %}
     <li>
@@ -10,13 +9,8 @@
     </li>
     {% endfor %}
 </ul>
-<p>
-
-    <a class="btn btn-sm btn-secondary" href="/tags/new">Add Tag</a>
-    </p>
-    <p>
-        <a href="/" class="btn btn-link">Back to main page</a>
-</p>
-
+<a class="btn btn-sm btn-secondary" href="/tags/new">Add Tag</a>
+<center>
+    <a href="/" class="btn btn-link">Back to main page</a>
+</center>
 {%endblock%}
-
