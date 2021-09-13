@@ -140,6 +140,7 @@ def show_post(post_id):
     """Shows post detail page"""
     post = Post.query.get_or_404(post_id)
     user = User.query.get_or_404(post.user_id)
+    # pdb.set_trace()
     return render_template('post_details.html', post=post, user=user)
     
     
@@ -160,6 +161,7 @@ def handle_post(post_id):
     
     # tag_ids = request.form.getlist('tags')
     # tags = Tag.query(Tag).filter(and_(Tag.ids == tag_ids)).first()
+    #From solutions
     tag_ids = [int(num) for num in request.form.getlist("tags")]
     post.tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
     post.created_at = datetime.now()
@@ -187,13 +189,20 @@ def list_tags():
     tags = Tag.query.all()
     return render_template('list_tags.html', tags=tags)
     # return render_template('tag_detail.html', tags=tags)
+    
+    
+@app.route('/tags/<int:tag_id>')
+def tag_detail(tag_id):
+    """Shows page detailing a specific tag"""
+    tag = Tag.query.get_or_404(tag_id)
+    return render_template('tag_detail.html', tag=tag)
 
 
 @app.route('/tags/new')
 def add_new_tag():
     """Shows form to add a new tag"""
     # posts = Post.query.all()
-    return render_template('add_new_tag.html')
+    return render_template('add_tag.html')
 
 
 @app.route('/tags/new', methods=['POST'])
@@ -212,15 +221,7 @@ def post_new_tag():
     # pdb.set_trace()
     # return render_template('list_tags.html', tag=tag)
 
-    return redirect(f'/tags')
-
-
-@app.route('/tags/<int:tag_id>')
-def tag_detail(tag_id):
-    """Shows page detailing a specific tag"""
-    tag = Tag.query.get_or_404(tag_id)
-    return render_template('tag_detail.html', tag=tag)
-
+    return redirect('/tags')
 
 
 @app.route('/tags/<int:tag_id>/edit')
@@ -236,6 +237,7 @@ def post_edit_tag(tag_id):
     """"Process edit form, edit tag, and redirects to the tags list"""
     tag = Tag.query.get_or_404(tag_id)
     tag.name = request.form['name']
+    #From solution
     post_ids = request.form.getlist('posts')
     tag.posts = Post.query.filter(Post.id.in_(post_ids)).all()
 
@@ -249,18 +251,16 @@ def post_edit_tag(tag_id):
 def delete_tag(tag_id):
     """Delete a tag"""
     tag = Tag.query.get_or_404(tag_id)
+    
     db.session.delete(tag)
     db.session.commit()
     
-    return redirect('/tags')
+    return redirect(f'/tags')
     
 
     
 
     
-    
-
-
 
 
 
@@ -274,4 +274,5 @@ def delete_tag(tag_id):
 
 # request.form['name']: use indexing if you know the key exists
 # request.form.get('name'): use get if the key might not exist
-# request.form.getlist('name'): use getlist if the key is sent multiple times and you want a list of values. get only returns the first value.
+# request.form.getlist('name'): use getlist if the key is sent multiple times and you want a list of values. getlist only returns the first value.
+#https://www.sistemasagiles.com.ar/examples/global/vars/request/getlist
