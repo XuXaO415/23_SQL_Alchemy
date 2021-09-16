@@ -7,35 +7,27 @@
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
 <p>
-    <i>Post by
+    <i>
+        Post by
         <b> {{post.user.first_name}} {{post.user.last_name}}</b>
         <small> on {{post.format_date}}</small>
     </i>
 </p>
 <a href="/tags">Tags:</a>
-  
- 
-
 {% if post.tags %}
 
 {% for tag in post.tags %}
-
 <p>
     <!-- <span class="badge">{{tag.name}}</span> -->
     <span class="badge badge-pill badge-primary">{{tag.name}}</span>
-     <!-- <span class="badge bg-primary badge badge-primary" id="badge-pill">{{tag.name}}</span> -->
-    
+    <!-- <span class="badge badge-primary">{{tag.name}}</span> -->
+    <!-- <span class="badge bg-primary badge badge-primary" id="badge-pill">{{tag.name}}</span> -->
     <!-- <a href="/tags" class="badge badge-pill badge-default">Default</a> -->
-    <!-- <span class="badge badge-primary">Primary</span> -->
     {% endfor %}
         {% else %}
-
-   
-    
-<!-- <span class="badge badge-pill badge-primary">Add tag</span> -->
-
+    <!-- <span class="badge badge-pill badge-primary">Add tag</span> -->
+    <a href="/tags/new" class="btn btn-outline-success">Create new tag</a>
     {% endif %}
-     <a href="/tags/new" class="btn btn-outline-success">Create new tag</a>
 </p>
 <form>
     <button class="btn btn-outline-primary" formmethod="GET" formaction="/users/{{ post.user_id }}">Cancel</button>
