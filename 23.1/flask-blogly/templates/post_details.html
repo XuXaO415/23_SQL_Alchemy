@@ -19,7 +19,11 @@
 {% for tag in post.tags %}
 <p>
     <!-- <span class="badge">{{tag.name}}</span> -->
-    <span class="badge badge-pill badge-primary">{{tag.name}}</span>
+    <!-- <span class="badge badge-pill badge-primary">{{tag.name}}</span> -->
+    <!-- <span class="badge badge-primary">{{ tag.name }}</span> -->
+
+    <span class="badge badge-primary">{{ tag.name }}</span>
+
     <!-- <span class="badge badge-primary">{{tag.name}}</span> -->
     <!-- <span class="badge bg-primary badge badge-primary" id="badge-pill">{{tag.name}}</span> -->
     <!-- <a href="/tags" class="badge badge-pill badge-default">Default</a> -->
