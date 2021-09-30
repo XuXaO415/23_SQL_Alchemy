@@ -165,7 +165,7 @@ def handle_post(post_id):
     #From solutions
     tag_ids = [int(num) for num in request.form.getlist("tags")]
     post.tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
-    post.created_at = datetime.now()
+    # post.created_at = datetime.now()
     
     db.session.add(post)
     db.session.commit()

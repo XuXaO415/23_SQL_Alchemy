@@ -14,8 +14,7 @@
     </i>
 </p>
 <a href="/tags">Tags:</a>
- <span class="badge badge-primary"></span>
-
+<span class="badge badge-primary"></span>
 {% if post.tags %}
 
 {% for tag in post.tags %}
@@ -23,17 +22,9 @@
     <!-- <span class="badge">{{tag.name}}</span> -->
     <!-- <span class="badge badge-pill badge-primary">{{tag.name}}</span> -->
     <span class="badge badge-primary">{{ tag.name }}</span>
-
-   
-
-    <!-- <span class="badge badge-primary">{{tag.name}}</span> -->
-    <!-- <span class="badge bg-primary badge badge-primary" id="badge-pill">{{tag.name}}</span> -->
-    <!-- <a href="/tags" class="badge badge-pill badge-default">Default</a> -->
     {% endfor %}
         {% else %}
-    <!-- <span class="badge badge-pill badge-primary">Add tag</span> -->
-    <!-- <a href="/tags/new" class="btn btn-outline-success">Create new tag</a> -->
-      <a href="/tags/new" class="badge badge-success">Create new tag</a>
+    <a href="/tags/new" class="badge badge-success">Create new tag</a>
     {% endif %}
 </p>
 <form>

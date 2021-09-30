@@ -5,25 +5,30 @@
 <form action="/tags/new" method="POST">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" id ="name" 
-        placeholder="Enter a name for a tag">
+        <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="name"
+            placeholder="Enter a name for a tag"
+        >
     </div>
-    
-  <div class="form-check form-group row">
-    {% for post in posts %}
-    <div>
-      <input class="form-input"
-             type="checkbox"
-             value="{{ post.id }}"
-             id="post_{{ post.id }}"
-             name="posts">
-      <label class="form-check-label" for="post_{{ post.id }}">
-        {{ post.title }}
-      </label>
+    <div class="form-check form-group row">
+        {% for post in posts %}
+        <div>
+            <input
+                class="form-input"
+                type="checkbox"
+                value="{{ post.id }}"
+                id="post_{{ post.id }}"
+                name="posts"
+            >
+            <label class="form-check-label" for="post_{{ post.id }}">
+                {{ post.title }}
+            </label>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-    
     <a href="/tags" class="btn btn-outline-info">Cancel</a>
     <button type="submit" class="btn btn-success">Add</button>
 </form>
