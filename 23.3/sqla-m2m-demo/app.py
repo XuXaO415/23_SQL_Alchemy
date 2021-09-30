@@ -4,7 +4,7 @@ from models import Employee, Department, db, connect_db
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///employees'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///employee_db'
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "abc123"

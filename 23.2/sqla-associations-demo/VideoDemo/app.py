@@ -13,7 +13,7 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 
-
+# GET route
 @app.route('/phones')
 def list_phones():
     """Renders directory of employees and phone numbers  (from dept)"""

@@ -37,6 +37,7 @@ class Employee(db.Model):
     projects = db.relationship('Project',
                                secondary='employees_projects',
                                backref='employees')
+    # backref establishes a two relationship
 
     def __repr__(self):
         e = self

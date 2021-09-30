@@ -8,31 +8,32 @@ db.drop_all()
 db.create_all()
 
 # Make a bunch of departments
-# d1 = Department(dept_code="mktg", dept_name="Marketing")
-# d2 = Department(dept_code="acct", dept_name="Accounting")
-# d3 = Department(dept_code="r&d",
-#                 dept_name="Research and Development", phone="908-7878")
-# d4 = Department(dept_code="sales", dept_name="Sales", phone="225-6912")
-# d5 = Department(
-#     dept_code="it", dept_name="Information Technology", phone="888-4562")
+d1 = Department(dept_code="mktg", dept_name="Marketing")
+d2 = Department(dept_code="acct", dept_name="Accounting")
+d3 = Department(dept_code="r&d",
+                dept_name="Research and Development", phone="908-7878")
+d4 = Department(dept_code="sales", dept_name="Sales", phone="225-6912")
+d5 = Department(
+    dept_code="it", dept_name="Information Technology", phone="888-4562")
 
-# db.session.add_all([d1, d2, d3, d4, d5])
+db.session.add_all([d1, d2, d3, d4, d5])
 
-# db.session.commit()
+db.session.commit()
 
 # # Make a bunch of employees
 
-# river = Employee(name="River Bottom", state="NY", dept_code="mktg")
-# summer = Employee(name="Summer Winter", state="OR", dept_code="mktg")
-# joaquin = Employee(name="Joaquin Phoenix", dept_code="acct")
-# octavia = Employee(name="Octavia Spencer", dept_code="r&d")
-# larry = Employee(name="Larry David", dept_code="r&d", state="NY")
-# kurt = Employee(name="Kurt Cobain", dept_code="it", state="WA")
-# rain = Employee(name="Rain Phoenix", dept_code="it")
+river = Employee(name="River Bottom", state="NY", dept_code="mktg")
+summer = Employee(name="Summer Winter", state="OR", dept_code="mktg")
+joaquin = Employee(name="Joaquin Phoenix", dept_code="acct")
+octavia = Employee(name="Octavia Spencer", dept_code="r&d")
+larry = Employee(name="Larry David", dept_code="r&d", state="NY")
+kurt = Employee(name="Kurt Cobain", dept_code="it", state="WA")
+rain = Employee(name="Rain Phoenix", dept_code="it")
+f = Employee(name="Freelancer Mcgee")
 
-# db.session.add_all([river, summer, joaquin, octavia, larry, kurt, rain])
+db.session.add_all([river, summer, joaquin, octavia, larry, kurt, rain, f])
 
-# db.session.commit()
+db.session.commit()
 
 EmployeeProject.query.delete()
 Employee.query.delete()
@@ -49,7 +50,8 @@ liz = Employee(name='Liz', dept=dl)
 maggie = Employee(name='Maggie', state='DC', dept=dm)
 nadine = Employee(name='Nadine')
 
-db.session.add_all([df, dl, dm, leonard, liz, maggie, nadine])
+# db.session.add_all([df, dl, dm, leonard, liz, maggie, nadine])
+db.session.add_all([df, dl, leonard, liz, maggie, nadine])
 db.session.commit()
 
 pc = Project(proj_code='car', proj_name='Design Car',
