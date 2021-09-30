@@ -1,11 +1,12 @@
 """Blogly application."""
 # https: // docs.sqlalchemy.org/en/14/core/sqlelement.html  # sqlalchemy.sql.expression.ColumnOperators.in_
-
+import os
 import datetime
 from operator import and_
 from flask import Flask, request, render_template, redirect, session, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post, Tag
+
 import pdb
 
 
@@ -13,7 +14,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SECRET_KEY'] = "0111001101100101011"
+app.config['SECRET_KEY'] = os.environ.get('API_KEY')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
