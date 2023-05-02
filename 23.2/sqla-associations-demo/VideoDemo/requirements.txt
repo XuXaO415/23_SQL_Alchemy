@@ -1,7 +1,7 @@
 autopep8==1.4.4
 blinker==1.4
 Click==7.0
-Flask==1.1.1
+Flask==2.2.5
 Flask-DebugToolbar==0.10.1
 Flask-SQLAlchemy==2.4.1
 itsdangerous==1.1.0
